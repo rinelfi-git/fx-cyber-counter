@@ -3,19 +3,29 @@
 	-fx-background-color: #343A40;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-border-color: black;
-	-fx-border-width: 1;
 }
 
 .bar-title{
-	-fx-background-color: #3d9970;
 	-fx-background-radius: 10px;
 }
 
+#brand{
+	-fx-background-color: #3d9970;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0, 0, 0);
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+}
+
+#topPane{
+	-fx-background-color: #3d9970;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+ }
+
 .bar-title .button{
 	-fx-background-color: transparent;
-	-fx-pref-height: 33;
-	-fx-pref-width: 33;
+	-fx-pref-height: 30;
+	-fx-pref-width: 30;
 	-fx-border-radius: 50%;
 	-fx-background-radius: 50%;
 	-fx-cursor: hand;
@@ -33,11 +43,11 @@
 .main-container{
 	-fx-border-radius: 10;
 	-fx-background-radius: 10;
-	-fx-background-color: white;
+	-fx-background-color: #ffffff;
 }
 
 .bar-title .label{
-	-fx-font-size: 16;
+	-fx-font-size: 18;
 	-fx-font-family: Lato;
 	-fx-text-fill: white;
 }
@@ -66,7 +76,9 @@
 }
 
 #progressBar > .track{
-	-fx-text-box-border: #ff851b;
+	-fx-text-box-border: #ffffff;
+	-fx-control-inner-background: #FFCCA0;
+	
 }
 
 #progressBar {

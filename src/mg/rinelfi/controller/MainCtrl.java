@@ -6,12 +6,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import mg.rinelfi.beans.Counter;
 import mg.rinelfi.beans.Timer;
 import mg.rinelfi.observation.ValueChangedListener;
 
@@ -21,10 +20,22 @@ import java.util.ResourceBundle;
 public class MainCtrl implements Initializable {
 	private boolean isRunning;
 	private Stage primaryStage;
-	private double xOffset;
-	private double yOffset;
+	private double xOffset, yOffset;
 	private Timer timer;
-	private Thread timerExecutor;
+	private Counter counter;
+	private Thread timerExecutor, counterExecutor;
+	@FXML
+	private TextField tarif;
+	@FXML
+	private TextField minimal;
+	@FXML
+	private CheckBox definirPlafond;
+	@FXML
+	private Slider pourcentagePlafond;
+	@FXML
+	private TextField plafond;
+	@FXML
+	private Label montant;
 	
 	@FXML
 	private ProgressBar progressBar;
@@ -49,6 +60,10 @@ public class MainCtrl implements Initializable {
 		if (isRunning) {
 			timerExecutor = new Thread(timer);
 			timerExecutor.start();
+			counter.setTarif(Integer.valueOf(tarif.getText()));
+			counter.setMinimal(Integer.valueOf(minimal.getText()));
+			counterExecutor = new Thread(counter);
+			counterExecutor.start();
 		} else {
 			timer.pause();
 		}
@@ -57,6 +72,7 @@ public class MainCtrl implements Initializable {
 	@FXML
 	void stop(ActionEvent event) {
 		timer.stop();
+		counter.stop();
 		isRunning = false;
 		launchBtn.setText("Lancer");
 	}
@@ -68,13 +84,16 @@ public class MainCtrl implements Initializable {
 	
 	@FXML
 	void minimise(ActionEvent event) {
-		primaryStage.setIconified(true);
+		getPrimaryStage().setIconified(true);
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		isRunning = false;
+		tarif.setText("0");
+		minimal.setText("0");
 		timer = new Timer();
+		counter = new Counter();
 		timer.addObserver(new ValueChangedListener() {
 			@Override
 			public void getNotified() {
@@ -82,7 +101,16 @@ public class MainCtrl implements Initializable {
 					hourViewer.setText(timer.getFormatedHour());
 					minuteViewer.setText(timer.getFormatedMinute());
 					secondViewer.setText(timer.getFormatedSecond());
-					progressBar.setProgress((double)timer.getSecond() / 100);
+					counter.setMinutes(timer.getMinute() * (timer.getHour() + 1));
+				});
+			}
+		});
+		counter.addObserver(new ValueChangedListener() {
+			@Override
+			public void getNotified() {
+				Platform.runLater(() -> {
+					if(counter.getMontant() < counter.getMinimal()) montant.setText(counter.getMinimal() + " Ar");
+					else montant.setText(counter.getMontant() + " Ar");
 				});
 			}
 		});
@@ -91,8 +119,8 @@ public class MainCtrl implements Initializable {
 			public void handle(MouseEvent event) {
 				AnchorPane source = (AnchorPane) event.getSource();
 				source.setCursor(Cursor.MOVE);
-				xOffset = primaryStage.getX() - event.getScreenX();
-				yOffset = primaryStage.getY() - event.getScreenY();
+				xOffset = getPrimaryStage().getX() - event.getScreenX();
+				yOffset = getPrimaryStage().getY() - event.getScreenY();
 			}
 		});
 		topPane.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -107,8 +135,8 @@ public class MainCtrl implements Initializable {
 		topPane.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				primaryStage.setX(xOffset + event.getScreenX());
-				primaryStage.setY(yOffset + event.getScreenY());
+				getPrimaryStage().setX(xOffset + event.getScreenX());
+				getPrimaryStage().setY(yOffset + event.getScreenY());
 			}
 		});
 	}

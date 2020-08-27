@@ -4,7 +4,7 @@ import mg.rinelfi.observation.*;
 
 import java.util.ArrayList;
 
-public class Timer implements Observable, ValuesChangedNotifier, Runnable {
+public class Timer implements Observable, ValueChangedNotifier, Runnable {
 	private final ArrayList<Observer> observers = new ArrayList<>();
 	private long timestamp;
 	private int second, minute, hour, day;
