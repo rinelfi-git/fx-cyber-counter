@@ -19,7 +19,7 @@
    <children>
       <AnchorPane prefHeight="26.0" prefWidth="289.0" styleClass="bar-title">
          <children>
-            <AnchorPane fx:id="topPane" layoutY="15.0" prefHeight="30.0" prefWidth="289.0">
+            <AnchorPane fx:id="topPane" layoutY="13.0" prefHeight="42.0" prefWidth="289.0">
                <children>
                   <HBox alignment="CENTER_RIGHT" layoutX="191.0" layoutY="9.0" prefHeight="30.0" prefWidth="90.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
                      <children>
