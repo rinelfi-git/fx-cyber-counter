@@ -1,0 +1,74 @@
+.container {
+	-fx-padding: 10px;
+	-fx-background-color: #343A40;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-border-color: black;
+	-fx-border-width: 1;
+}
+
+.bar-title{
+	-fx-background-color: #3d9970;
+	-fx-background-radius: 10px;
+}
+
+.bar-title .button{
+	-fx-background-color: transparent;
+	-fx-pref-height: 33;
+	-fx-pref-width: 33;
+	-fx-border-radius: 50%;
+	-fx-background-radius: 50%;
+	-fx-cursor: hand;
+}
+
+.bar-title .button:hover{
+	-fx-background-color: rgba(0, 0, 0, .1);
+	-fx-cursor: hand;
+}
+
+.bar-title .button .action-bar{
+	-fx-fill: white;
+}
+
+.main-container{
+	-fx-border-radius: 10;
+	-fx-background-radius: 10;
+	-fx-background-color: white;
+}
+
+.bar-title .label{
+	-fx-font-size: 16;
+	-fx-font-family: Lato;
+	-fx-text-fill: white;
+}
+
+.bar-title .big-c{
+	-fx-font: italic 50 "Ubuntu";
+}
+
+#launchBtn{
+	-fx-background-color: #3d9970;
+	-fx-text-fill: white;
+}
+
+.bottom-pane .button{
+	-fx-padding: 7 15;
+	-fx-pref-width: 100;
+	-fx-cursor: hand;
+}
+
+#launchBtn:hover{
+	-fx-background-color: #1A7E51;
+}
+
+.btn-secondary {
+	-fx-background-color: white;
+}
+
+#progressBar > .track{
+	-fx-text-box-border: #ff851b;
+}
+
+#progressBar {
+	-fx-accent: #ff851b;
+}

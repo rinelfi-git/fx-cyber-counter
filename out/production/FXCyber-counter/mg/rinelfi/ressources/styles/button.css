@@ -1,0 +1,13 @@
+
+
+.btn-default{
+	-fx-background-color: #f8f9fa;
+	-fx-border-color: #ddd;
+	-fx-text-fill: #444;
+}
+
+.btn-primary{
+	-fx-background-color: #f8f9fa;
+	-fx-border-color: #ddd;
+	-fx-text-fill: #444;
+}
