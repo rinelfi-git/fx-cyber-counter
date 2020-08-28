@@ -31,9 +31,7 @@ public class Launcher extends Application {
 		primaryStage.setX(10);
 		primaryStage.setY(10);
 		primaryStage.setTitle("Cyber counter");
-		InputStream inputStream = Launcher.class.getResourceAsStream("/mg/rinelfi/ressources/favicon/android-chrome-192x192.png");
-		System.out.println(inputStream);
-		primaryStage.getIcons().add(new Image(inputStream));
+		primaryStage.getIcons().add(new Image(Launcher.class.getResourceAsStream("/mg/rinelfi/ressources/favicon/android-chrome-192x192.png")));
 		primaryStage.show();
 	}
 }
