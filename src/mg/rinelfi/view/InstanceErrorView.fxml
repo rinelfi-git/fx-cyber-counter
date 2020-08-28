@@ -20,7 +20,7 @@
                <right>
                   <Button mnemonicParsing="false" onAction="#close" prefHeight="29.0" prefWidth="16.0" BorderPane.alignment="CENTER">
                      <graphic>
-                        <FontAwesomeIconView glyphName="CLOSE" size="16" styleClass="action-bar" />
+                        <FontAwesomeIconView glyphName="CLOSE" size="16" styleClass="action-bar-icon" />
                      </graphic>
                   </Button>
                </right>

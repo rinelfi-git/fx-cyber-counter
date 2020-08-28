@@ -5,7 +5,7 @@
 	-fx-border-radius: 10;
 }
 
-.container .body{
+.container .body {
 	-fx-padding: 10px;
 	-fx-background-color: white;
 	-fx-background-radius: 10;
@@ -13,6 +13,7 @@
 }
 
 .title-bar {
+	-fx-fill: white;
 	-fx-text-fill: white;
 	-fx-background-color: #C6303E;
 	-fx-background-radius: 10;
@@ -20,14 +21,18 @@
 	-fx-background-radius: 10px;
 }
 
-.title-bar .button{
-	-fx-fill: white;
+.title-bar .button {
 	-fx-background-color: transparent;
 	-fx-pref-height: 30;
 	-fx-pref-width: 30;
 	-fx-border-radius: 50%;
 	-fx-background-radius: 50%;
 	-fx-cursor: hand;
+}
+
+.title-bar .button .action-bar-icon {
+	-fx-fill: white;
+	-fx-text-fill: white;
 }
 
 .title-bar .button:hover {
