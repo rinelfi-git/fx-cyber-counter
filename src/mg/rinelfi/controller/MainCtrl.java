@@ -73,17 +73,17 @@ public class MainCtrl implements Initializable {
 			counterExecutor.start();
 			disableAll();
 		} else {
+			enableAll();
 			counter.pause();
 			timer.pause();
-			enableAll();
 		}
 	}
 	
 	@FXML
 	void stop(ActionEvent event) {
+		enableAll();
 		timer.stop();
 		counter.stop();
-		enableAll();
 		isRunning = false;
 		launchBtn.setText("Lancer");
 	}
