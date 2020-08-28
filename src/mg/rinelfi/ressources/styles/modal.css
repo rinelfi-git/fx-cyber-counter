@@ -1,0 +1,36 @@
+.container {
+	-fx-padding: 10px;
+	-fx-background-color: #343A40;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+}
+
+.container .body{
+	-fx-padding: 10px;
+	-fx-background-color: white;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+}
+
+.title-bar {
+	-fx-text-fill: white;
+	-fx-background-color: #C6303E;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-background-radius: 10px;
+}
+
+.title-bar .button{
+	-fx-fill: white;
+	-fx-background-color: transparent;
+	-fx-pref-height: 30;
+	-fx-pref-width: 30;
+	-fx-border-radius: 50%;
+	-fx-background-radius: 50%;
+	-fx-cursor: hand;
+}
+
+.title-bar .button:hover {
+	-fx-background-color: rgba(0, 0, 0, .1);
+	-fx-cursor: hand;
+}

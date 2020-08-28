@@ -1,13 +1,69 @@
+/*Buttons*/
+.btn {
+	-fx-font-weight: 400;
+	-fx-text-fill: #212529;
+	-fx-fill: #212529;
+	-fx-cursor: hand;
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-border-width: 1px;
+	-fx-border-style: solid;
+	-fx-alignment: center;
+	-fx-content-display: center;
+	-fx-background-insets: 0, 0, -1, 0;
+	-fx-padding: 0.375em 0.75em;
+	-fx-font-size: 1em;
+	-fx-border-radius: 0.25em;
+	-fx-background-radius: 0.25em;
+}
 
-
-.btn-default{
+.btn-default {
 	-fx-background-color: #f8f9fa;
 	-fx-border-color: #ddd;
 	-fx-text-fill: #444;
 }
 
-.btn-primary{
-	-fx-background-color: #f8f9fa;
-	-fx-border-color: #ddd;
-	-fx-text-fill: #444;
+.btn-primary {
+	-fx-fill: #ffffff;
+	-fx-text-fill: #ffffff;
+	-fx-background-color: #007bff;
+	-fx-border-color: #007bff;
+}
+
+.btn-primary:hover {
+	-fx-fill: #ffffff;
+	-fx-text-fill: #ffffff;
+	-fx-background-color: #0069d9;
+	-fx-border-color: #0062cc;
+}
+
+/*Danger button*/
+.btn-danger {
+	-fx-text-fill: #ffffff;
+	-fx-fill: #ffffff;
+	-fx-background-color: #dc3545;
+	-fx-border-color: #dc3545;
+	-fx-effect: none;
+}
+
+.btn-danger:hover {
+	-fx-text-fill: #ffffff;
+	-fx-fill: #ffffff;
+	-fx-background-color: #c82333;
+	-fx-border-color: #bd2130;
+}
+
+.btn-danger:focused {
+	-fx-text-fill: #ffffff;
+	-fx-fill: #ffffff;
+	-fx-background-color: #c82333;
+	-fx-border-color: #bd2130;
+	-fx-effect: none, dropshadow(gaussian, rgba(225, 83, 97, 0.5), 6, 0, 0, 0);;
+}
+
+.btn-danger:disabled {
+	-fx-text-fill: #ffffff;
+	-fx-fill: #ffffff;
+	-fx-background-color: #dc3545;
+	-fx-border-color: #dc3545;
 }
