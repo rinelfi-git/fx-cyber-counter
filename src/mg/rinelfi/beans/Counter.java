@@ -1,13 +1,12 @@
 package mg.rinelfi.beans;
 
-import mg.rinelfi.observation.Observer;
-import mg.rinelfi.observation.ValueChangedListener;
-import mg.rinelfi.observation.ValueChangedNotifier;
+import mg.rinelfi.observation.*;
 
 import java.util.ArrayList;
 
-public class Counter implements ValueChangedNotifier, Runnable {
-	private int tarif, minimal, montant, pourcentagePlafond, plafond, minutes;
+public class Counter implements ValueChangedNotifier, IntObservable, Runnable {
+	private int tarif, minimal, montant, pourcentagePlafond, plafond;
+	private long seconds;
 	private boolean plafondDefinis, counting;
 	private final ArrayList<Observer> observers = new ArrayList<>();
 	
@@ -17,17 +16,17 @@ public class Counter implements ValueChangedNotifier, Runnable {
 		montant = 0;
 		pourcentagePlafond = 0;
 		plafond = 0;
-		minutes = 0;
+		seconds = 0;
 		plafondDefinis = false;
 		counting = false;
 	}
 	
-	public int getMinutes() {
-		return minutes;
+	public long getSeconds() {
+		return seconds;
 	}
 	
-	public void setMinutes(int minutes) {
-		this.minutes = minutes;
+	public void setSeconds(long seconds) {
+		this.seconds = seconds;
 	}
 	
 	public int getTarif() {
@@ -78,10 +77,27 @@ public class Counter implements ValueChangedNotifier, Runnable {
 		this.plafondDefinis = plafondDefinis;
 	}
 	
+	public void stop() {
+		counting = false;
+		tarif = 0;
+		minimal = 0;
+		montant = 0;
+		pourcentagePlafond = 0;
+		plafond = 0;
+		seconds = 0;
+		plafondDefinis = false;
+		notifyConsumer();
+		update(0);
+	}
+	
+	public void pause() {
+		counting = false;
+	}
+	
 	@Override
 	public void notifyConsumer() {
 		observers.forEach(consumer -> {
-			if(consumer instanceof ValueChangedListener) {
+			if (consumer instanceof ValueChangedListener) {
 				((ValueChangedListener) consumer).getNotified();
 			}
 		});
@@ -100,8 +116,14 @@ public class Counter implements ValueChangedNotifier, Runnable {
 	@Override
 	public void run() {
 		counting = true;
-		while(counting) {
-			setMontant(getMinutes() * getTarif());
+		while (counting) {
+			int toMinute = (int) getSeconds() / 60;
+			setMontant(toMinute * getTarif());
+			if (isPlafondDefinis()) {
+				long secondesTotal = getPlafond() * 60 / getTarif();
+				int percentage = (int) (getSeconds() * 100 / secondesTotal);
+				update(percentage <= 100 ? percentage : 100);
+			} else update(0);
 			notifyConsumer();
 			try {
 				Thread.sleep(500);
@@ -111,15 +133,12 @@ public class Counter implements ValueChangedNotifier, Runnable {
 		}
 	}
 	
-	public void stop() {
-		counting = false;
-		tarif = 0;
-		minimal = 0;
-		montant = 0;
-		pourcentagePlafond = 0;
-		plafond = 0;
-		minutes = 0;
-		plafondDefinis = false;
-		notifyConsumer();
+	@Override
+	public void update(int value) {
+		observers.forEach(consumer -> {
+			if (consumer instanceof IntObserver) {
+				((IntObserver) consumer).update(value);
+			}
+		});
 	}
 }
